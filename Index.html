@@ -15,18 +15,10 @@
 }
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;overflow:hidden}
-body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;position:relative}
-
-/* ── NOISE TEXTURE ── */
-body::before{content:’’;position:fixed;inset:0;background-image:url(“data:image/svg+xml,%3Csvg viewBox=‘0 0 256 256’ xmlns=‘http://www.w3.org/2000/svg’%3E%3Cfilter id=‘noise’%3E%3CfeTurbulence type=‘fractalNoise’ baseFrequency=‘0.9’ numOctaves=‘4’ stitchTiles=‘stitch’/%3E%3C/filter%3E%3Crect width=‘100%25’ height=‘100%25’ filter=‘url(%23noise)’ opacity=‘0.03’/%3E%3C/svg%3E”);pointer-events:none;z-index:0;opacity:0.4}
-
-/* ── GLOW ── */
-.glow{position:fixed;width:400px;height:400px;border-radius:50%;pointer-events:none;z-index:0;filter:blur(120px);opacity:0.12;transition:all 2s ease}
-#g1{background:var(–acc);top:-100px;left:-100px}
-#g2{background:var(–acc2);bottom:-100px;right:-100px}
+body{background:#080808;color:#f2efe9;font-family:'DM Sans',sans-serif;position:relative}
 
 /* ── SCREENS ── */
-.screen{position:fixed;inset:0;overflow-y:auto;z-index:1;display:none;flex-direction:column;animation:fadeIn 0.4s ease}
+.screen{position:fixed;inset:0;overflow-y:auto;z-index:100;display:none;flex-direction:column}
 .screen.active{display:flex}
 @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 
@@ -277,8 +269,6 @@ input[type=range]::-webkit-slider-thumb{appearance:none;width:22px;height:22px;b
 </head>
 <body>
 
-<div class="glow" id="g1"></div>
-<div class="glow" id="g2"></div>
 <div class="toast" id="toast"></div>
 
 <!-- LOAD -->
