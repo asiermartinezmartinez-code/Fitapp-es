@@ -678,7 +678,12 @@ async function init() {
     } catch { localStorage.removeItem('fitapp_session'); }
   }
   if(!currentUser) { showScreen('authScreen'); return; }
-  if(!profile || !profile.onboarding_done) { showScreen('onboardScreen'); return; }
+  if(!profile || !profile.onboarding_done || !profile.name) {
+    // Reset obData
+    obData = {goal:null,level:null,material:[],days:3,lesiones:[],age:'',weight:'',height:'',sex:''};
+    showScreen('onboardScreen');
+    return;
+  }
   await loadHome();
 }
 
@@ -820,6 +825,15 @@ async function finishOnboarding() {
   obData.weight = document.getElementById('obWeight').value||null;
   obData.height = document.getElementById('obHeight').value||null;
   obData.sex = document.getElementById('obSex').value||null;
+
+  // Debug check
+  if(!currentUser?.user?.id) {
+    alert('Error: sesión perdida. Vuelve a entrar.');
+    showScreen('authScreen');
+    return;
+  }
+  if(!obData.goal) { alert('Falta objetivo'); return; }
+  if(!obData.level) { alert('Falta nivel'); return; }
 
   showScreen('genScreen');
   await animateGen();
@@ -987,17 +1001,17 @@ function generateRoutine(profile) {
 }
 
 async function saveProfileAndRoutine() {
-  if(!currentUser?.user?.id) return;
+  if(!currentUser?.user?.id) { showToast('Error: no hay usuario'); return; }
   const inviteCode = Math.random().toString(36).substring(2,8).toUpperCase();
   const routine = generateRoutine(obData);
   const profileData = {
     user_id: currentUser.user.id,
-    name: obData.name,
-    goal: obData.goal,
-    level: obData.level,
-    material: JSON.stringify(obData.material),
-    days_per_week: obData.days,
-    lesiones: JSON.stringify(obData.lesiones),
+    name: obData.name||'Sin nombre',
+    goal: obData.goal||'mezcla',
+    level: obData.level||'intermedio',
+    material: JSON.stringify(obData.material||[]),
+    days_per_week: obData.days||3,
+    lesiones: JSON.stringify(obData.lesiones||[]),
     age: obData.age||null,
     weight_kg: obData.weight||null,
     height_cm: obData.height||null,
@@ -1010,24 +1024,34 @@ async function saveProfileAndRoutine() {
     partner_id: null,
   };
 
+  showToast('Guardando perfil...');
   const token = currentUser.access_token;
-  const headers = {'Authorization': `Bearer ${token}`, 'Prefer': 'resolution=merge-duplicates'};
 
-  // Use upsert via POST with merge-duplicates
-  const res = await sb('profiles', {
+  const res = await fetch(`${SB}/rest/v1/profiles`, {
     method: 'POST',
-    body: JSON.stringify(profileData),
-    headers
+    headers: {
+      'apikey': SK,
+      'Authorization': `Bearer ${token}`,
+      'Content-Type': 'application/json',
+      'Prefer': 'return=representation,resolution=merge-duplicates'
+    },
+    body: JSON.stringify(profileData)
   });
 
-  if(!res) {
-    // Try PATCH if POST failed
-    await sb(`profiles?user_id=eq.${currentUser.user.id}`, {
+  const text = await res.text();
+  if(!res.ok) {
+    showToast('Error: ' + res.status + ' ' + text.substring(0,50));
+    console.error('Save error:', res.status, text);
+    // Try PATCH as fallback
+    const res2 = await fetch(`${SB}/rest/v1/profiles?user_id=eq.${currentUser.user.id}`, {
       method: 'PATCH',
-      body: JSON.stringify(profileData),
-      headers: {'Authorization': `Bearer ${token}`}
+      headers: {'apikey':SK,'Authorization':`Bearer ${token}`,'Content-Type':'application/json','Prefer':'return=representation'},
+      body: JSON.stringify(profileData)
     });
+    if(!res2.ok) { showToast('PATCH también falló: '+res2.status); return; }
   }
+
+  showToast('Perfil guardado ✓');
   await loadProfile();
 }
 
