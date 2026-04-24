@@ -35,14 +35,15 @@ body::before{content:’’;position:fixed;inset:0;background-image:url(“data:
 .auth-logo{font-family:‘Syne’,sans-serif;font-size:42px;font-weight:800;letter-spacing:-0.02em;margin-bottom:6px;text-align:center}
 .auth-logo span{color:var(–acc)}
 .auth-sub{font-size:13px;color:var(–muted);margin-bottom:40px;text-align:center}
-.auth-box{width:100%;max-width:380px;background:var(–surf);border:1px solid var(–border);border-radius:20px;padding:28px 24px}
+.auth-box{width:100%;max-width:380px;background:var(–surf);border:1px solid var(–border);border-radius:20px;padding:28px 24px;color:var(–text)}
 .auth-tabs{display:flex;gap:0;margin-bottom:24px;background:var(–s2);border-radius:10px;padding:3px}
-.auth-tab{flex:1;padding:9px;text-align:center;font-size:13px;font-weight:500;cursor:pointer;border-radius:8px;transition:all 0.2s;color:var(–muted)}
+.auth-tab{flex:1;padding:9px;text-align:center;font-size:13px;font-weight:500;cursor:pointer;border-radius:8px;transition:all 0.2s;color:var(–muted);background:transparent}
 .auth-tab.active{background:var(–acc);color:#080808;font-weight:600}
 .field{margin-bottom:14px}
 .field label{display:block;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(–muted);margin-bottom:5px}
-.field input{width:100%;background:var(–s2);border:1px solid var(–border);border-radius:11px;padding:12px 14px;color:var(–text);font-family:‘DM Sans’,sans-serif;font-size:14px;outline:none;transition:border-color 0.2s}
-.field input:focus{border-color:var(–acc)}
+.field input{width:100%;background:var(–s2);border:1px solid var(–border);border-radius:11px;padding:12px 14px;color:var(–text);font-family:‘DM Sans’,sans-serif;font-size:14px;outline:none;transition:border-color 0.2s;-webkit-text-fill-color:var(–text)}
+.field input::placeholder{color:var(–muted);-webkit-text-fill-color:var(–muted)}
+.field input:focus{border-color:var(–acc);-webkit-text-fill-color:var(–text)}
 .btn-primary{width:100%;padding:14px;background:var(–acc);color:#080808;border:none;border-radius:12px;font-family:‘Syne’,sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:all 0.2s;margin-top:6px;letter-spacing:0.02em}
 .btn-primary:hover{opacity:0.88;transform:translateY(-1px)}
 .btn-primary:active{transform:translateY(0)}
