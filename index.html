@@ -469,8 +469,7 @@ async function doRegister() {
   if(!email||!pass) return showAuthMsg('Rellena todos los campos','err');
   if(pass.length<6) return showAuthMsg('Contraseña mínimo 6 caracteres','err');
   showAuthMsg('Creando cuenta...','');
-  const hash = await hashPass(pass);
-  const res = await sb('profiles', {method:'POST', body:JSON.stringify({email, password_hash:hash})});
+  const res = await sb('profiles', {method:'POST', body:JSON.stringify({email, password_hash:pass})});
   if(res&&res[0]) {
     profile = res[0];
     localStorage.setItem('fitapp_pid', profile.id);
@@ -486,8 +485,7 @@ async function doLogin() {
   const pass = document.getElementById('lPass').value;
   if(!email||!pass) return showAuthMsg('Rellena todos los campos','err');
   showAuthMsg('Entrando...','');
-  const hash = await hashPass(pass);
-  const res = await sb(`profiles?email=eq.${encodeURIComponent(email)}&password_hash=eq.${hash}&select=*`);
+  const res = await sb(`profiles?email=eq.${encodeURIComponent(email)}&password_hash=eq.${encodeURIComponent(pass)}&select=*`);
   if(res&&res[0]) {
     profile = res[0];
     localStorage.setItem('fitapp_pid', profile.id);
