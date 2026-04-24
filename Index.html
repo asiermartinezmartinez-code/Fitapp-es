@@ -1039,34 +1039,29 @@ async function saveProfileAndRoutine() {
     routine: JSON.stringify(routine),
     sessions_total: 0,
     streak: 0,
-    partner_id: null,
   };
 
-  showToast('Guardando perfil...');
   const token = currentUser.access_token;
 
-  const res = await fetch(`${SB}/rest/v1/profiles`, {
-    method: 'POST',
-    headers: {
-      'apikey': SK,
-      'Authorization': `Bearer ${token}`,
-      'Content-Type': 'application/json',
-      'Prefer': 'return=representation,resolution=merge-duplicates'
-    },
+  // Always try PATCH first (profile may already exist)
+  const patchRes = await fetch(`${SB}/rest/v1/profiles?user_id=eq.${currentUser.user.id}`, {
+    method: 'PATCH',
+    headers: {'apikey':SK,'Authorization':`Bearer ${token}`,'Content-Type':'application/json','Prefer':'return=representation'},
     body: JSON.stringify(profileData)
   });
 
-  const text = await res.text();
-  if(!res.ok) {
-    showToast('Error: ' + res.status + ' ' + text.substring(0,50));
-    console.error('Save error:', res.status, text);
-    // Try PATCH as fallback
-    const res2 = await fetch(`${SB}/rest/v1/profiles?user_id=eq.${currentUser.user.id}`, {
-      method: 'PATCH',
+  if(!patchRes.ok) {
+    // If PATCH fails, try POST
+    const postRes = await fetch(`${SB}/rest/v1/profiles`, {
+      method: 'POST',
       headers: {'apikey':SK,'Authorization':`Bearer ${token}`,'Content-Type':'application/json','Prefer':'return=representation'},
       body: JSON.stringify(profileData)
     });
-    if(!res2.ok) { showToast('PATCH también falló: '+res2.status); return; }
+    if(!postRes.ok) {
+      const err = await postRes.text();
+      showToast('Error al guardar: ' + err.substring(0,40));
+      return;
+    }
   }
 
   showToast('Perfil guardado ✓');
