@@ -41,9 +41,9 @@ body::before{content:’’;position:fixed;inset:0;background-image:url(“data:
 .auth-tab.active{background:var(–acc);color:#080808;font-weight:600}
 .field{margin-bottom:14px}
 .field label{display:block;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(–muted);margin-bottom:5px}
-.field input{width:100%;background:var(–s2);border:1px solid var(–border);border-radius:11px;padding:12px 14px;color:var(–text);font-family:‘DM Sans’,sans-serif;font-size:14px;outline:none;transition:border-color 0.2s;-webkit-text-fill-color:var(–text)}
-.field input::placeholder{color:var(–muted);-webkit-text-fill-color:var(–muted)}
-.field input:focus{border-color:var(–acc);-webkit-text-fill-color:var(–text)}
+.field input{width:100%;background:#1e1e1e;border:1.5px solid #333;border-radius:11px;padding:12px 14px;color:#f2efe9;font-family:‘DM Sans’,sans-serif;font-size:16px;outline:none;-webkit-appearance:none;appearance:none;box-shadow:none;-webkit-text-fill-color:#f2efe9;opacity:1}
+.field input:focus{border-color:var(–acc)}
+.field input::placeholder{color:#555;-webkit-text-fill-color:#555}
 .btn-primary{width:100%;padding:14px;background:var(–acc);color:#080808;border:none;border-radius:12px;font-family:‘Syne’,sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:all 0.2s;margin-top:6px;letter-spacing:0.02em}
 .btn-primary:hover{opacity:0.88;transform:translateY(-1px)}
 .btn-primary:active{transform:translateY(0)}
@@ -298,13 +298,13 @@ input[type=range]::-webkit-slider-thumb{appearance:none;width:22px;height:22px;b
       <div class="auth-tab" onclick="setAuthTab('register',this)">Registrarse</div>
     </div>
     <div id="loginForm">
-      <div class="field"><label>Email</label><input type="email" id="loginEmail" placeholder="tu@email.com"></div>
-      <div class="field"><label>Contraseña</label><input type="password" id="loginPass" placeholder="••••••••"></div>
+      <div class="field"><label>Email</label><input type="email" id="loginEmail" placeholder="tu@email.com" autocomplete="email"></div>
+      <div class="field"><label>Contraseña</label><input type="password" id="loginPass" placeholder="••••••••" autocomplete="current-password"></div>
       <button class="btn-primary" onclick="doLogin()">Entrar →</button>
     </div>
     <div id="registerForm" class="hidden">
-      <div class="field"><label>Email</label><input type="email" id="regEmail" placeholder="tu@email.com"></div>
-      <div class="field"><label>Contraseña</label><input type="password" id="regPass" placeholder="Mínimo 6 caracteres"></div>
+      <div class="field"><label>Email</label><input type="email" id="regEmail" placeholder="tu@email.com" autocomplete="email"></div>
+      <div class="field"><label>Contraseña</label><input type="password" id="regPass" placeholder="Mínimo 6 caracteres" autocomplete="new-password"></div>
       <button class="btn-primary" onclick="doRegister()">Crear cuenta →</button>
     </div>
     <div class="auth-msg" id="authMsg"></div>
