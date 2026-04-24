@@ -470,6 +470,7 @@ async function doRegister() {
   if(pass.length<6) return showAuthMsg('Contraseña mínimo 6 caracteres','err');
   showAuthMsg('Creando cuenta...','');
   const res = await sb('profiles', {method:'POST', body:JSON.stringify({email, password_hash:pass})});
+  alert('Respuesta: ' + JSON.stringify(res));
   if(res&&res[0]) {
     profile = res[0];
     localStorage.setItem('fitapp_pid', profile.id);
