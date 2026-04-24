@@ -634,13 +634,20 @@ const SK = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI
 // ─── SUPABASE ───
 async function sb(path, opts={}) {
   try {
+    const token = currentUser?.access_token || SK;
     const r = await fetch(`${SB}/rest/v1/${path}`, {
-      headers:{'apikey':SK,'Authorization':`Bearer ${SK}`,'Content-Type':'application/json','Prefer':'return=representation',...(opts.headers||{})},
+      headers:{
+        'apikey': SK,
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=representation',
+        ...(opts.headers||{})
+      },
       ...opts
     });
-    if(!r.ok) return null;
+    if(!r.ok) { console.error('SB error', r.status, await r.text()); return null; }
     try{return await r.json();}catch{return null;}
-  }catch{return null;}
+  }catch(e){console.error('SB fetch error',e);return null;}
 }
 
 async function sbAuth(path, body) {
@@ -1003,12 +1010,23 @@ async function saveProfileAndRoutine() {
     partner_id: null,
   };
 
-  // Try upsert
-  const existing = await sb(`profiles?user_id=eq.${currentUser.user.id}&select=id`);
-  if(existing&&existing.length>0) {
-    await sb(`profiles?user_id=eq.${currentUser.user.id}`, {method:'PATCH', body:JSON.stringify(profileData)});
-  } else {
-    await sb('profiles', {method:'POST', body:JSON.stringify(profileData)});
+  const token = currentUser.access_token;
+  const headers = {'Authorization': `Bearer ${token}`, 'Prefer': 'resolution=merge-duplicates'};
+
+  // Use upsert via POST with merge-duplicates
+  const res = await sb('profiles', {
+    method: 'POST',
+    body: JSON.stringify(profileData),
+    headers
+  });
+
+  if(!res) {
+    // Try PATCH if POST failed
+    await sb(`profiles?user_id=eq.${currentUser.user.id}`, {
+      method: 'PATCH',
+      body: JSON.stringify(profileData),
+      headers: {'Authorization': `Bearer ${token}`}
+    });
   }
   await loadProfile();
 }
@@ -1294,8 +1312,6 @@ function showToast(msg) {
 
 // ─── START ───
 init();
-</script>
-
 </script>
 
 <!-- SUPABASE SCHEMA NOTE: Run this SQL in Supabase before using:
