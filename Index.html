@@ -221,6 +221,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
       <button class="btn" onclick="doRegister()">Crear cuenta →</button>
     </div>
     <div class="msg" id="authMsg"></div>
+    <button class="btn ghost" onclick="clearSession()">↺ Problemas para entrar</button>
   </div>
 </div>
 
@@ -877,6 +878,12 @@ function showToast(msg) {
   const t=document.getElementById('toast');
   t.textContent=msg; t.classList.add('show');
   setTimeout(()=>t.classList.remove('show'),2500);
+}
+
+function clearSession() {
+  localStorage.removeItem('fitapp_pid');
+  profile=null;
+  showToast('Sesión limpiada ✓');
 }
 
 // ─── INIT ───
