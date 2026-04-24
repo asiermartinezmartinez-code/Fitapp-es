@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -16,188 +17,191 @@ body{overflow:hidden}
 .screen.active{display:flex}
 
 /* AUTH */
-#authScreen{align-items:center;justify-content:center;padding:24px;background:var(--bg)}
-.logo{font-family:'Syne',sans-serif;font-size:44px;font-weight:800;letter-spacing:-0.02em;margin-bottom:4px;text-align:center}
-.logo span{color:var(--acc)}
-.logo-sub{font-size:13px;color:var(--muted);margin-bottom:36px;text-align:center}
-.auth-card{width:100%;max-width:380px;background:var(--s1);border:1px solid var(--border);border-radius:20px;padding:24px}
-.auth-tabs{display:grid;grid-template-columns:1fr 1fr;gap:4px;background:var(--s2);border-radius:10px;padding:3px;margin-bottom:22px}
-.auth-tab{padding:9px;text-align:center;font-size:13px;font-weight:500;cursor:pointer;border-radius:8px;color:var(--muted);transition:all 0.2s}
-.auth-tab.active{background:var(--acc);color:#080808;font-weight:700}
+#authScreen{align-items:center;justify-content:center;padding:24px;background:var(–bg)}
+.logo{font-family:‘Syne’,sans-serif;font-size:44px;font-weight:800;letter-spacing:-0.02em;margin-bottom:4px;text-align:center}
+.logo span{color:var(–acc)}
+.logo-sub{font-size:13px;color:var(–muted);margin-bottom:36px;text-align:center}
+.auth-card{width:100%;max-width:380px;background:var(–s1);border:1px solid var(–border);border-radius:20px;padding:24px}
+.auth-tabs{display:grid;grid-template-columns:1fr 1fr;gap:4px;background:var(–s2);border-radius:10px;padding:3px;margin-bottom:22px}
+.auth-tab{padding:9px;text-align:center;font-size:13px;font-weight:500;cursor:pointer;border-radius:8px;color:var(–muted);transition:all 0.2s}
+.auth-tab.active{background:var(–acc);color:#080808;font-weight:700}
 .field{margin-bottom:14px}
-.field label{display:block;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+.field label{display:block;font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(–muted);margin-bottom:5px}
 .field input{width:100%;background:#1e1e1e;border:1.5px solid #333;border-radius:11px;padding:13px 14px;color:#f2efe9;font-size:16px;outline:none;-webkit-appearance:none;-webkit-text-fill-color:#f2efe9}
-.field input:focus{border-color:var(--acc)}
-.btn{width:100%;padding:14px;background:var(--acc);color:#080808;border:none;border-radius:12px;font-family:'Syne',sans-serif;font-size:15px;font-weight:700;cursor:pointer;margin-top:4px}
+.field input:focus{border-color:var(–acc)}
+.btn{width:100%;padding:14px;background:var(–acc);color:#080808;border:none;border-radius:12px;font-family:‘Syne’,sans-serif;font-size:15px;font-weight:700;cursor:pointer;margin-top:4px}
 .btn:active{opacity:0.85}
-.btn.ghost{background:transparent;color:var(--muted);border:1px solid var(--border);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:400;margin-top:8px}
+.btn.ghost{background:transparent;color:var(–muted);border:1px solid var(–border);font-family:‘DM Sans’,sans-serif;font-size:13px;font-weight:400;margin-top:8px}
 .msg{font-size:12px;text-align:center;margin-top:10px;min-height:16px}
-.msg.err{color:var(--err)}
-.msg.ok{color:var(--ok)}
+.msg.err{color:var(–err)}
+.msg.ok{color:var(–ok)}
 
 /* ONBOARDING */
-#obScreen{background:var(--bg);padding-bottom:40px}
-.ob-progress{height:3px;background:var(--border);position:sticky;top:0;z-index:5;flex-shrink:0}
-.ob-bar{height:100%;background:var(--acc);transition:width 0.4s}
+#obScreen{background:var(–bg);padding-bottom:40px}
+.ob-progress{height:3px;background:var(–border);position:sticky;top:0;z-index:5;flex-shrink:0}
+.ob-bar{height:100%;background:var(–acc);transition:width 0.4s}
 .ob-body{padding:28px 20px;max-width:480px;margin:0 auto;width:100%}
 .ob-step{display:none}
 .ob-step.active{display:block}
-.ob-tag{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--acc);margin-bottom:8px}
-.ob-title{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;line-height:1.1;margin-bottom:6px}
-.ob-title em{font-style:normal;color:var(--acc)}
-.ob-desc{font-size:13px;color:var(--muted);margin-bottom:24px;line-height:1.6}
+.ob-tag{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(–acc);margin-bottom:8px}
+.ob-title{font-family:‘Syne’,sans-serif;font-size:26px;font-weight:800;line-height:1.1;margin-bottom:6px}
+.ob-title em{font-style:normal;color:var(–acc)}
+.ob-desc{font-size:13px;color:var(–muted);margin-bottom:24px;line-height:1.6}
 .opts{display:flex;flex-direction:column;gap:9px;margin-bottom:22px}
 .opts.grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
-.opt{padding:13px 15px;background:var(--s1);border:1.5px solid var(--border);border-radius:13px;cursor:pointer;transition:all 0.2s}
-.opt.sel{border-color:var(--acc);background:rgba(232,255,71,0.06)}
+.opt{padding:13px 15px;background:var(–s1);border:1.5px solid var(–border);border-radius:13px;cursor:pointer;transition:all 0.2s}
+.opt.sel{border-color:var(–acc);background:rgba(232,255,71,0.06)}
 .opt-icon{font-size:20px;margin-bottom:5px;display:block}
 .opt-title{font-size:14px;font-weight:500}
-.opt.sel .opt-title{color:var(--acc)}
-.opt-desc{font-size:11px;color:var(--muted);margin-top:2px;line-height:1.4}
+.opt.sel .opt-title{color:var(–acc)}
+.opt-desc{font-size:11px;color:var(–muted);margin-top:2px;line-height:1.4}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
-.chip{padding:8px 14px;background:var(--s1);border:1.5px solid var(--border);border-radius:100px;font-size:13px;cursor:pointer;transition:all 0.2s}
-.chip.sel{border-color:var(--acc);color:var(--acc);background:rgba(232,255,71,0.06)}
+.chip{padding:8px 14px;background:var(–s1);border:1.5px solid var(–border);border-radius:100px;font-size:13px;cursor:pointer;transition:all 0.2s}
+.chip.sel{border-color:var(–acc);color:var(–acc);background:rgba(232,255,71,0.06)}
 .sl-wrap{margin-bottom:22px}
-.sl-val{font-family:'Syne',sans-serif;font-size:44px;font-weight:800;color:var(--acc)}
-.sl-unit{font-size:13px;color:var(--muted)}
-input[type=range]{width:100%;height:4px;background:var(--border);border-radius:4px;outline:none;-webkit-appearance:none;cursor:pointer;margin:10px 0}
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--acc);cursor:pointer}
-.sl-labels{display:flex;justify-content:space-between;font-size:11px;color:var(--muted)}
+.sl-val{font-family:‘Syne’,sans-serif;font-size:44px;font-weight:800;color:var(–acc)}
+.sl-unit{font-size:13px;color:var(–muted)}
+input[type=range]{width:100%;height:4px;background:var(–border);border-radius:4px;outline:none;-webkit-appearance:none;cursor:pointer;margin:10px 0}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(–acc);cursor:pointer}
+.sl-labels{display:flex;justify-content:space-between;font-size:11px;color:var(–muted)}
 .ob-input{width:100%;background:#1e1e1e;border:1.5px solid #333;border-radius:12px;padding:13px 15px;color:#f2efe9;font-size:16px;outline:none;-webkit-appearance:none;-webkit-text-fill-color:#f2efe9;margin-bottom:22px}
-.ob-input:focus{border-color:var(--acc)}
+.ob-input:focus{border-color:var(–acc)}
 .ob-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:22px}
 .ob-grid .field{margin-bottom:0}
 .ob-nav{display:flex;gap:9px}
-.ob-back{padding:13px 18px;background:transparent;border:1px solid var(--border);border-radius:12px;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:14px;cursor:pointer}
-.ob-next{flex:1;padding:13px;background:var(--acc);color:#080808;border:none;border-radius:12px;font-family:'Syne',sans-serif;font-size:14px;font-weight:700;cursor:pointer}
+.ob-back{padding:13px 18px;background:transparent;border:1px solid var(–border);border-radius:12px;color:var(–muted);font-family:‘DM Sans’,sans-serif;font-size:14px;cursor:pointer}
+.ob-next{flex:1;padding:13px;background:var(–acc);color:#080808;border:none;border-radius:12px;font-family:‘Syne’,sans-serif;font-size:14px;font-weight:700;cursor:pointer}
 .ob-next:disabled{opacity:0.3;cursor:not-allowed}
 
 /* GENERATING */
-#genScreen{align-items:center;justify-content:center;padding:24px;text-align:center;background:var(--bg)}
+#genScreen{align-items:center;justify-content:center;padding:24px;text-align:center;background:var(–bg)}
 .gen-icon{font-size:52px;margin-bottom:18px;animation:pulse 1.5s ease-in-out infinite}
 @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
-.gen-title{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;margin-bottom:8px}
-.gen-sub{font-size:13px;color:var(--muted);margin-bottom:28px}
-.gen-bar-wrap{width:220px;height:3px;background:var(--border);border-radius:3px;overflow:hidden;margin:0 auto}
-.gen-bar-fill{height:100%;background:var(--acc);width:0%;transition:width 0.5s;border-radius:3px}
-.gen-step{margin-top:16px;font-size:12px;color:var(--muted)}
+.gen-title{font-family:‘Syne’,sans-serif;font-size:24px;font-weight:800;margin-bottom:8px}
+.gen-sub{font-size:13px;color:var(–muted);margin-bottom:28px}
+.gen-bar-wrap{width:220px;height:3px;background:var(–border);border-radius:3px;overflow:hidden;margin:0 auto}
+.gen-bar-fill{height:100%;background:var(–acc);width:0%;transition:width 0.5s;border-radius:3px}
+.gen-step{margin-top:16px;font-size:12px;color:var(–muted)}
 
 /* HOME */
-#homeScreen{background:var(--bg);padding-bottom:80px}
+#homeScreen{background:var(–bg);padding-bottom:80px}
 .topbar{display:flex;align-items:center;justify-content:space-between;padding:20px 16px 0;max-width:480px;margin:0 auto}
-.topbar-name{font-family:'Syne',sans-serif;font-size:20px;font-weight:800}
-.topbar-name span{color:var(--acc)}
-.avatar{width:36px;height:36px;border-radius:50%;background:var(--acc);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:15px;font-weight:800;color:#080808;cursor:pointer;flex-shrink:0}
+.topbar-name{font-family:‘Syne’,sans-serif;font-size:20px;font-weight:800}
+.topbar-name span{color:var(–acc)}
+.avatar{width:36px;height:36px;border-radius:50%;background:var(–acc);display:flex;align-items:center;justify-content:center;font-family:‘Syne’,sans-serif;font-size:15px;font-weight:800;color:#080808;cursor:pointer;flex-shrink:0}
 .hcontent{padding:0 16px;max-width:480px;margin:0 auto}
-.sec-title{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);margin:18px 0 10px}
+.sec-title{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(–muted);margin:18px 0 10px}
 .week-strip{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px;margin-bottom:14px}
 .week-strip::-webkit-scrollbar{display:none}
-.wday{flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 11px;border-radius:11px;border:1px solid var(--border);cursor:pointer;background:var(--s1);min-width:48px}
-.wday.today{border-color:var(--acc);background:rgba(232,255,71,0.06)}
+.wday{flex-shrink:0;display:flex;flex-direction:column;align-items:center;gap:4px;padding:10px 11px;border-radius:11px;border:1px solid var(–border);cursor:pointer;background:var(–s1);min-width:48px}
+.wday.today{border-color:var(–acc);background:rgba(232,255,71,0.06)}
 .wday.rest{opacity:0.4}
-.wday-lbl{font-size:10px;font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em}
-.wday.today .wday-lbl{color:var(--acc)}
+.wday-lbl{font-size:10px;font-weight:500;color:var(–muted);text-transform:uppercase;letter-spacing:0.06em}
+.wday.today .wday-lbl{color:var(–acc)}
 .wday-ico{font-size:18px}
-.today-card{background:var(--s1);border:1px solid var(--border);border-radius:16px;padding:16px;margin-bottom:14px;cursor:pointer;position:relative;overflow:hidden;transition:border-color 0.2s}
-.today-card::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px;background:var(--acc)}
-.today-card:hover{border-color:var(--acc)}
-.today-tag{font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--acc);margin-bottom:5px}
-.today-title{font-family:'Syne',sans-serif;font-size:19px;font-weight:800;text-transform:uppercase;line-height:1;margin-bottom:4px}
-.today-meta{font-size:12px;color:var(--muted);margin-bottom:12px}
-.today-prog{height:3px;background:var(--border);border-radius:3px;overflow:hidden;margin-bottom:8px}
-.today-prog-fill{height:100%;background:var(--acc);border-radius:3px;transition:width 0.4s}
-.today-prog-lbl{display:flex;justify-content:space-between;font-size:11px;color:var(--muted)}
+.today-card{background:var(–s1);border:1px solid var(–border);border-radius:16px;padding:16px;margin-bottom:14px;cursor:pointer;position:relative;overflow:hidden;transition:border-color 0.2s}
+.today-card::before{content:’’;position:absolute;top:0;left:0;bottom:0;width:3px;background:var(–acc)}
+.today-card:hover{border-color:var(–acc)}
+.today-tag{font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(–acc);margin-bottom:5px}
+.today-title{font-family:‘Syne’,sans-serif;font-size:19px;font-weight:800;text-transform:uppercase;line-height:1;margin-bottom:4px}
+.today-meta{font-size:12px;color:var(–muted);margin-bottom:12px}
+.today-prog{height:3px;background:var(–border);border-radius:3px;overflow:hidden;margin-bottom:8px}
+.today-prog-fill{height:100%;background:var(–acc);border-radius:3px;transition:width 0.4s}
+.today-prog-lbl{display:flex;justify-content:space-between;font-size:11px;color:var(–muted)}
 .stats-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
-.stat{background:var(--s1);border:1px solid var(--border);border-radius:13px;padding:14px;text-align:center}
-.stat-val{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:var(--acc);line-height:1;margin-bottom:3px}
-.stat-lbl{font-size:10px;color:var(--muted)}
+.stat{background:var(–s1);border:1px solid var(–border);border-radius:13px;padding:14px;text-align:center}
+.stat-val{font-family:‘Syne’,sans-serif;font-size:26px;font-weight:800;color:var(–acc);line-height:1;margin-bottom:3px}
+.stat-lbl{font-size:10px;color:var(–muted)}
 
 /* WORKOUT */
-#workoutScreen{background:var(--bg);padding-bottom:80px}
-.workout-hd{padding:16px;background:var(--s1);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:5}
+#workoutScreen{background:var(–bg);padding-bottom:80px}
+.workout-hd{padding:16px;background:var(–s1);border-bottom:1px solid var(–border);position:sticky;top:0;z-index:5}
 .workout-hd-top{display:flex;align-items:center;gap:12px;margin-bottom:10px}
-.back-btn{width:34px;height:34px;border-radius:50%;border:1px solid var(--border);background:transparent;color:var(--text);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.workout-title{font-family:'Syne',sans-serif;font-size:17px;font-weight:800;text-transform:uppercase;flex:1}
-.wprog{height:3px;background:var(--border);border-radius:3px;overflow:hidden}
-.wprog-fill{height:100%;background:var(--acc);transition:width 0.4s}
+.back-btn{width:34px;height:34px;border-radius:50%;border:1px solid var(–border);background:transparent;color:var(–text);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.workout-title{font-family:‘Syne’,sans-serif;font-size:17px;font-weight:800;text-transform:uppercase;flex:1}
+.wprog{height:3px;background:var(–border);border-radius:3px;overflow:hidden}
+.wprog-fill{height:100%;background:var(–acc);transition:width 0.4s}
 .wcontent{padding:0 16px;max-width:480px;margin:0 auto}
-.wblock{background:var(--s1);border:1px solid var(--border);border-radius:13px;margin:10px 0;overflow:hidden}
-.wbhd{padding:11px 14px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border);cursor:pointer;user-select:none}
+.wblock{background:var(–s1);border:1px solid var(–border);border-radius:13px;margin:10px 0;overflow:hidden}
+.wbhd{padding:11px 14px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(–border);cursor:pointer;user-select:none}
 .wbdot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-.dw{background:var(--err)}.da{background:var(--acc)}.db{background:var(--err)}.dr{background:var(--ok)}
-.wbtitle{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;flex:1}
+.dw{background:var(–err)}.da{background:var(–acc)}.db{background:var(–err)}.dr{background:var(–ok)}
+.wbtitle{font-family:‘Syne’,sans-serif;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;flex:1}
 .wbbadge{font-size:10px;padding:2px 7px;border-radius:100px;font-weight:500}
-.bst{background:rgba(232,255,71,0.12);color:var(--acc)}
-.bam{background:rgba(255,107,53,0.12);color:var(--acc2)}
-.bem{background:rgba(82,214,138,0.12);color:var(--ok)}
-.bw{background:rgba(255,71,87,0.1);color:var(--err)}
-.br{background:rgba(82,214,138,0.12);color:var(--ok)}
-.wcv{color:var(--muted);font-size:12px;transition:transform 0.25s;flex-shrink:0}
+.bst{background:rgba(232,255,71,0.12);color:var(–acc)}
+.bam{background:rgba(255,107,53,0.12);color:var(–acc2)}
+.bem{background:rgba(82,214,138,0.12);color:var(–ok)}
+.bw{background:rgba(255,71,87,0.1);color:var(–err)}
+.br{background:rgba(82,214,138,0.12);color:var(–ok)}
+.wcv{color:var(–muted);font-size:12px;transition:transform 0.25s;flex-shrink:0}
 .wblock.open .wcv{transform:rotate(180deg)}
 .wbbody{display:none;padding:11px 14px}
 .wblock.open .wbbody{display:block}
-.exrow{display:flex;align-items:center;gap:9px;padding:8px 0;border-bottom:1px solid var(--border);cursor:pointer}
+.exrow{display:flex;align-items:center;gap:9px;padding:8px 0;border-bottom:1px solid var(–border);cursor:pointer}
 .exrow:last-child{border-bottom:none;padding-bottom:0}
 .exrow:first-child{padding-top:0}
 .exrow.done{opacity:0.35}
-.exchk{width:21px;height:21px;border-radius:6px;border:1.5px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:10px;transition:all 0.2s}
-.exrow.done .exchk{background:var(--acc);border-color:var(--acc);color:#080808}
+.exchk{width:21px;height:21px;border-radius:6px;border:1.5px solid var(–border);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:10px;transition:all 0.2s}
+.exrow.done .exchk{background:var(–acc);border-color:var(–acc);color:#080808}
 .exname{font-size:13px;line-height:1.3;flex:1}
-.exdet{font-size:11px;color:var(--muted)}
-.log-btn{width:24px;height:24px;border-radius:6px;border:none;background:rgba(82,214,138,0.1);color:var(--ok);font-size:11px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.srpanel{background:var(--s2);border-radius:10px;padding:11px;margin-top:8px;border:1px solid var(--border)}
-.srpanel-title{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.exdet{font-size:11px;color:var(–muted)}
+.log-btn{width:24px;height:24px;border-radius:6px;border:none;background:rgba(82,214,138,0.1);color:var(–ok);font-size:11px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.srpanel{background:var(–s2);border-radius:10px;padding:11px;margin-top:8px;border:1px solid var(–border)}
+.srpanel-title{font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(–muted);margin-bottom:8px}
 .srrow{display:flex;gap:6px;align-items:center;margin-bottom:6px}
-.srnum{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;color:var(--muted);width:18px;flex-shrink:0;text-align:center}
-.srin{flex:1;background:var(--s3);border:1px solid var(--border);border-radius:7px;padding:6px 8px;color:#f2efe9;font-size:13px;outline:none;-webkit-appearance:none;-webkit-text-fill-color:#f2efe9}
-.srin:focus{border-color:var(--acc)}
-.srunit{font-size:11px;color:var(--muted);flex-shrink:0}
-.sradd{width:100%;padding:6px;background:transparent;border:1px dashed var(--border);border-radius:7px;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:11px;cursor:pointer;margin-top:3px}
-.srsave{width:100%;padding:8px;background:var(--acc);color:#080808;border:none;border-radius:8px;font-family:'Syne',sans-serif;font-size:12px;font-weight:700;cursor:pointer;margin-top:7px}
+.srnum{font-family:‘Syne’,sans-serif;font-size:15px;font-weight:700;color:var(–muted);width:18px;flex-shrink:0;text-align:center}
+.srin{flex:1;background:var(–s3);border:1px solid var(–border);border-radius:7px;padding:6px 8px;color:#f2efe9;font-size:13px;outline:none;-webkit-appearance:none;-webkit-text-fill-color:#f2efe9}
+.srin:focus{border-color:var(–acc)}
+.srunit{font-size:11px;color:var(–muted);flex-shrink:0}
+.sradd{width:100%;padding:6px;background:transparent;border:1px dashed var(–border);border-radius:7px;color:var(–muted);font-family:‘DM Sans’,sans-serif;font-size:11px;cursor:pointer;margin-top:3px}
+.srsave{width:100%;padding:8px;background:var(–acc);color:#080808;border:none;border-radius:8px;font-family:‘Syne’,sans-serif;font-size:12px;font-weight:700;cursor:pointer;margin-top:7px}
 
 /* PROFILE */
-#profileScreen{background:var(--bg);padding-bottom:80px}
-.prof-hero{padding:28px 16px 20px;border-bottom:1px solid var(--border)}
-.prof-avatar{width:64px;height:64px;border-radius:50%;background:var(--acc);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:#080808;margin-bottom:12px}
-.prof-name{font-family:'Syne',sans-serif;font-size:24px;font-weight:800;margin-bottom:3px}
-.prof-tag{font-size:12px;color:var(--muted)}
+#profileScreen{background:var(–bg);padding-bottom:80px}
+.prof-hero{padding:28px 16px 20px;border-bottom:1px solid var(–border)}
+.prof-avatar{width:64px;height:64px;border-radius:50%;background:var(–acc);display:flex;align-items:center;justify-content:center;font-family:‘Syne’,sans-serif;font-size:26px;font-weight:800;color:#080808;margin-bottom:12px}
+.prof-name{font-family:‘Syne’,sans-serif;font-size:24px;font-weight:800;margin-bottom:3px}
+.prof-tag{font-size:12px;color:var(–muted)}
 .prof-content{padding:14px 16px}
-.psec{background:var(--s1);border:1px solid var(--border);border-radius:14px;padding:14px;margin-bottom:10px}
-.psec-title{font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
-.prow{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border)}
+.psec{background:var(–s1);border:1px solid var(–border);border-radius:14px;padding:14px;margin-bottom:10px}
+.psec-title{font-size:10px;letter-spacing:0.15em;text-transform:uppercase;color:var(–muted);margin-bottom:10px}
+.prow{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(–border)}
 .prow:last-child{border-bottom:none;padding-bottom:0}
-.prow-lbl{font-size:13px;color:var(--muted)}
-.prow-val{font-size:13px;font-weight:500;color:var(--acc)}
-.danger-btn{width:100%;padding:13px;background:transparent;border:1px solid var(--err);border-radius:12px;color:var(--err);font-family:'DM Sans',sans-serif;font-size:13px;cursor:pointer;margin-top:4px}
+.prow-lbl{font-size:13px;color:var(–muted)}
+.prow-val{font-size:13px;font-weight:500;color:var(–acc)}
+.danger-btn{width:100%;padding:13px;background:transparent;border:1px solid var(–err);border-radius:12px;color:var(–err);font-family:‘DM Sans’,sans-serif;font-size:13px;cursor:pointer;margin-top:4px}
 
 /* BOTTOM NAV */
-.bnav{position:fixed;bottom:0;left:0;right:0;background:var(--s1);border-top:1px solid var(--border);display:flex;z-index:100;max-width:480px;margin:0 auto;left:50%;transform:translateX(-50%)}
-.bnav-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:11px 6px;cursor:pointer;color:var(--muted);border:none;background:transparent;font-family:'DM Sans',sans-serif;transition:color 0.2s}
-.bnav-item.active{color:var(--acc)}
+.bnav{position:fixed;bottom:0;left:0;right:0;background:var(–s1);border-top:1px solid var(–border);display:flex;z-index:100;max-width:480px;margin:0 auto;left:50%;transform:translateX(-50%)}
+.bnav-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:11px 6px;cursor:pointer;color:var(–muted);border:none;background:transparent;font-family:‘DM Sans’,sans-serif;transition:color 0.2s}
+.bnav-item.active{color:var(–acc)}
 .bnav-icon{font-size:19px}
 .bnav-lbl{font-size:10px;font-weight:500}
 
 /* TOAST */
-.toast{position:fixed;bottom:88px;left:50%;transform:translateX(-50%) translateY(10px);background:var(--ok);color:#080808;padding:9px 18px;border-radius:100px;font-size:12px;font-weight:600;opacity:0;transition:all 0.3s;z-index:200;pointer-events:none;white-space:nowrap}
+.toast{position:fixed;bottom:88px;left:50%;transform:translateX(-50%) translateY(10px);background:var(–ok);color:#080808;padding:9px 18px;border-radius:100px;font-size:12px;font-weight:600;opacity:0;transition:all 0.3s;z-index:200;pointer-events:none;white-space:nowrap}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
 /* LOADING */
-#loadScreen{align-items:center;justify-content:center;background:var(--bg)}
-.load-logo{font-family:'Syne',sans-serif;font-size:36px;font-weight:800;animation:lp 1.5s ease-in-out infinite}
-.load-logo span{color:var(--acc)}
+#loadScreen{align-items:center;justify-content:center;background:var(–bg)}
+.load-logo{font-family:‘Syne’,sans-serif;font-size:36px;font-weight:800;animation:lp 1.5s ease-in-out infinite}
+.load-logo span{color:var(–acc)}
 @keyframes lp{0%,100%{opacity:1}50%{opacity:0.3}}
 </style>
+
 </head>
 <body>
 
 <div class="toast" id="toast"></div>
 
 <!-- LOAD -->
+
 <div class="screen active" id="loadScreen">
   <div class="load-logo">FIT<span>APP</span></div>
 </div>
 
 <!-- AUTH -->
+
 <div class="screen" id="authScreen">
   <div class="logo">FIT<span>APP</span></div>
   <div class="logo-sub">Tu rutina. Tu ritmo. Tu progreso.</div>
@@ -221,119 +225,123 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 </div>
 
 <!-- ONBOARDING -->
+
 <div class="screen" id="obScreen">
   <div class="ob-progress"><div class="ob-bar" id="obBar"></div></div>
   <div class="ob-body">
 
-    <!-- S1: NOMBRE -->
-    <div class="ob-step active" id="obs1">
-      <div class="ob-tag">Paso 1 de 7</div>
-      <div class="ob-title">¿Cómo te<br><em>llamamos?</em></div>
-      <div class="ob-desc">Tu nombre para personalizar la experiencia.</div>
-      <input class="ob-input" id="obName" placeholder="Tu nombre" maxlength="30" oninput="checkS1()">
-      <div class="ob-nav"><button class="ob-next" id="s1next" disabled onclick="goS(2)">Siguiente →</button></div>
-    </div>
+```
+<!-- S1: NOMBRE -->
+<div class="ob-step active" id="obs1">
+  <div class="ob-tag">Paso 1 de 7</div>
+  <div class="ob-title">¿Cómo te<br><em>llamamos?</em></div>
+  <div class="ob-desc">Tu nombre para personalizar la experiencia.</div>
+  <input class="ob-input" id="obName" placeholder="Tu nombre" maxlength="30" oninput="checkS1()">
+  <div class="ob-nav"><button class="ob-next" id="s1next" disabled onclick="goS(2)">Siguiente →</button></div>
+</div>
 
-    <!-- S2: OBJETIVO -->
-    <div class="ob-step" id="obs2">
-      <div class="ob-tag">Paso 2 de 7</div>
-      <div class="ob-title">¿Cuál es tu<br><em>objetivo?</em></div>
-      <div class="ob-desc">Define el tipo de entrenamiento que recibirás.</div>
-      <div class="opts">
-        <div class="opt" onclick="selOpt(this,'goal','fuerza')"><span class="opt-icon">💪</span><div class="opt-title">Ganar fuerza y masa</div><div class="opt-desc">Cargas altas, reps bajas, descansos largos</div></div>
-        <div class="opt" onclick="selOpt(this,'goal','tonificar')"><span class="opt-icon">🔥</span><div class="opt-title">Tonificar y definir</div><div class="opt-desc">Más reps, circuitos, cardio integrado</div></div>
-        <div class="opt" onclick="selOpt(this,'goal','perder_peso')"><span class="opt-icon">⚡</span><div class="opt-title">Perder grasa</div><div class="opt-desc">HIIT, AMRAP, alta intensidad</div></div>
-        <div class="opt" onclick="selOpt(this,'goal','resistencia')"><span class="opt-icon">🏃</span><div class="opt-title">Mejorar resistencia</div><div class="opt-desc">Circuitos largos, cardio + fuerza</div></div>
-        <div class="opt" onclick="selOpt(this,'goal','mezcla')"><span class="opt-icon">🎯</span><div class="opt-title">Mezcla de todo</div><div class="opt-desc">Fuerza, cardio y movilidad equilibrados</div></div>
-      </div>
-      <div class="ob-nav"><button class="ob-back" onclick="goS(1)">←</button><button class="ob-next" id="s2next" disabled onclick="goS(3)">Siguiente →</button></div>
-    </div>
+<!-- S2: OBJETIVO -->
+<div class="ob-step" id="obs2">
+  <div class="ob-tag">Paso 2 de 7</div>
+  <div class="ob-title">¿Cuál es tu<br><em>objetivo?</em></div>
+  <div class="ob-desc">Define el tipo de entrenamiento que recibirás.</div>
+  <div class="opts">
+    <div class="opt" onclick="selOpt(this,'goal','fuerza')"><span class="opt-icon">💪</span><div class="opt-title">Ganar fuerza y masa</div><div class="opt-desc">Cargas altas, reps bajas, descansos largos</div></div>
+    <div class="opt" onclick="selOpt(this,'goal','tonificar')"><span class="opt-icon">🔥</span><div class="opt-title">Tonificar y definir</div><div class="opt-desc">Más reps, circuitos, cardio integrado</div></div>
+    <div class="opt" onclick="selOpt(this,'goal','perder_peso')"><span class="opt-icon">⚡</span><div class="opt-title">Perder grasa</div><div class="opt-desc">HIIT, AMRAP, alta intensidad</div></div>
+    <div class="opt" onclick="selOpt(this,'goal','resistencia')"><span class="opt-icon">🏃</span><div class="opt-title">Mejorar resistencia</div><div class="opt-desc">Circuitos largos, cardio + fuerza</div></div>
+    <div class="opt" onclick="selOpt(this,'goal','mezcla')"><span class="opt-icon">🎯</span><div class="opt-title">Mezcla de todo</div><div class="opt-desc">Fuerza, cardio y movilidad equilibrados</div></div>
+  </div>
+  <div class="ob-nav"><button class="ob-back" onclick="goS(1)">←</button><button class="ob-next" id="s2next" disabled onclick="goS(3)">Siguiente →</button></div>
+</div>
 
-    <!-- S3: NIVEL -->
-    <div class="ob-step" id="obs3">
-      <div class="ob-tag">Paso 3 de 7</div>
-      <div class="ob-title">¿Cuál es tu<br><em>nivel?</em></div>
-      <div class="ob-desc">Sé honesto/a — la rutina se adaptará perfectamente.</div>
-      <div class="opts">
-        <div class="opt" onclick="selOpt(this,'level','principiante')"><span class="opt-icon">🌱</span><div class="opt-title">Principiante</div><div class="opt-desc">Menos de 6 meses entrenando</div></div>
-        <div class="opt" onclick="selOpt(this,'level','intermedio')"><span class="opt-icon">🔥</span><div class="opt-title">Intermedio</div><div class="opt-desc">6 meses a 2 años</div></div>
-        <div class="opt" onclick="selOpt(this,'level','avanzado')"><span class="opt-icon">⚡</span><div class="opt-title">Avanzado</div><div class="opt-desc">Más de 2 años entrenando</div></div>
-      </div>
-      <div class="ob-nav"><button class="ob-back" onclick="goS(2)">←</button><button class="ob-next" id="s3next" disabled onclick="goS(4)">Siguiente →</button></div>
-    </div>
+<!-- S3: NIVEL -->
+<div class="ob-step" id="obs3">
+  <div class="ob-tag">Paso 3 de 7</div>
+  <div class="ob-title">¿Cuál es tu<br><em>nivel?</em></div>
+  <div class="ob-desc">Sé honesto/a — la rutina se adaptará perfectamente.</div>
+  <div class="opts">
+    <div class="opt" onclick="selOpt(this,'level','principiante')"><span class="opt-icon">🌱</span><div class="opt-title">Principiante</div><div class="opt-desc">Menos de 6 meses entrenando</div></div>
+    <div class="opt" onclick="selOpt(this,'level','intermedio')"><span class="opt-icon">🔥</span><div class="opt-title">Intermedio</div><div class="opt-desc">6 meses a 2 años</div></div>
+    <div class="opt" onclick="selOpt(this,'level','avanzado')"><span class="opt-icon">⚡</span><div class="opt-title">Avanzado</div><div class="opt-desc">Más de 2 años entrenando</div></div>
+  </div>
+  <div class="ob-nav"><button class="ob-back" onclick="goS(2)">←</button><button class="ob-next" id="s3next" disabled onclick="goS(4)">Siguiente →</button></div>
+</div>
 
-    <!-- S4: MATERIAL -->
-    <div class="ob-step" id="obs4">
-      <div class="ob-tag">Paso 4 de 7</div>
-      <div class="ob-title">¿Con qué<br><em>material</em> cuentas?</div>
-      <div class="ob-desc">Selecciona todo lo que tienes disponible.</div>
-      <div class="chips" id="materialChips">
-        <div class="chip" data-v="sin_material" onclick="selChip(this,'material')">Sin material</div>
-        <div class="chip" data-v="mancuernas" onclick="selChip(this,'material')">Mancuernas</div>
-        <div class="chip" data-v="kettlebell" onclick="selChip(this,'material')">Kettlebell</div>
-        <div class="chip" data-v="banco" onclick="selChip(this,'material')">Banco</div>
-        <div class="chip" data-v="gomas" onclick="selChip(this,'material')">Gomas</div>
-        <div class="chip" data-v="comba" onclick="selChip(this,'material')">Comba</div>
-        <div class="chip" data-v="pelota_medicinal" onclick="selChip(this,'material')">Pelota medicinal</div>
-        <div class="chip" data-v="rodillo_abdominal" onclick="selChip(this,'material')">Rodillo abdominal</div>
-        <div class="chip" data-v="barra" onclick="selChip(this,'material')">Barra + discos</div>
-        <div class="chip" data-v="gimnasio" onclick="selChip(this,'material')">🏋️ Gimnasio completo</div>
-      </div>
-      <div class="ob-nav"><button class="ob-back" onclick="goS(3)">←</button><button class="ob-next" id="s4next" disabled onclick="goS(5)">Siguiente →</button></div>
-    </div>
+<!-- S4: MATERIAL -->
+<div class="ob-step" id="obs4">
+  <div class="ob-tag">Paso 4 de 7</div>
+  <div class="ob-title">¿Con qué<br><em>material</em> cuentas?</div>
+  <div class="ob-desc">Selecciona todo lo que tienes disponible.</div>
+  <div class="chips" id="materialChips">
+    <div class="chip" data-v="sin_material" onclick="selChip(this,'material')">Sin material</div>
+    <div class="chip" data-v="mancuernas" onclick="selChip(this,'material')">Mancuernas</div>
+    <div class="chip" data-v="kettlebell" onclick="selChip(this,'material')">Kettlebell</div>
+    <div class="chip" data-v="banco" onclick="selChip(this,'material')">Banco</div>
+    <div class="chip" data-v="gomas" onclick="selChip(this,'material')">Gomas</div>
+    <div class="chip" data-v="comba" onclick="selChip(this,'material')">Comba</div>
+    <div class="chip" data-v="pelota_medicinal" onclick="selChip(this,'material')">Pelota medicinal</div>
+    <div class="chip" data-v="rodillo_abdominal" onclick="selChip(this,'material')">Rodillo abdominal</div>
+    <div class="chip" data-v="barra" onclick="selChip(this,'material')">Barra + discos</div>
+    <div class="chip" data-v="gimnasio" onclick="selChip(this,'material')">🏋️ Gimnasio completo</div>
+  </div>
+  <div class="ob-nav"><button class="ob-back" onclick="goS(3)">←</button><button class="ob-next" id="s4next" disabled onclick="goS(5)">Siguiente →</button></div>
+</div>
 
-    <!-- S5: DÍAS -->
-    <div class="ob-step" id="obs5">
-      <div class="ob-tag">Paso 5 de 7</div>
-      <div class="ob-title">¿Cuántos días<br><em>a la semana?</em></div>
-      <div class="ob-desc">Días que puedes dedicar al entrenamiento.</div>
-      <div class="sl-wrap">
-        <div><span class="sl-val" id="daysVal">3</span> <span class="sl-unit">días / semana</span></div>
-        <input type="range" min="2" max="6" value="3" id="daysSlider" oninput="document.getElementById('daysVal').textContent=this.value;obData.days=parseInt(this.value)">
-        <div class="sl-labels"><span>2 días</span><span>6 días</span></div>
-      </div>
-      <div class="ob-nav"><button class="ob-back" onclick="goS(4)">←</button><button class="ob-next" onclick="goS(6)">Siguiente →</button></div>
-    </div>
+<!-- S5: DÍAS -->
+<div class="ob-step" id="obs5">
+  <div class="ob-tag">Paso 5 de 7</div>
+  <div class="ob-title">¿Cuántos días<br><em>a la semana?</em></div>
+  <div class="ob-desc">Días que puedes dedicar al entrenamiento.</div>
+  <div class="sl-wrap">
+    <div><span class="sl-val" id="daysVal">3</span> <span class="sl-unit">días / semana</span></div>
+    <input type="range" min="2" max="6" value="3" id="daysSlider" oninput="document.getElementById('daysVal').textContent=this.value;obData.days=parseInt(this.value)">
+    <div class="sl-labels"><span>2 días</span><span>6 días</span></div>
+  </div>
+  <div class="ob-nav"><button class="ob-back" onclick="goS(4)">←</button><button class="ob-next" onclick="goS(6)">Siguiente →</button></div>
+</div>
 
-    <!-- S6: DATOS FÍSICOS -->
-    <div class="ob-step" id="obs6">
-      <div class="ob-tag">Paso 6 de 7</div>
-      <div class="ob-title">Tus datos<br><em>físicos</em></div>
-      <div class="ob-desc">Opcionales — útiles para personalizar mejor.</div>
-      <div class="ob-grid">
-        <div class="field"><label>Edad</label><input type="number" id="obAge" placeholder="25" class="ob-input" style="margin:0"></div>
-        <div class="field"><label>Peso (kg)</label><input type="number" id="obWeight" placeholder="70" class="ob-input" style="margin:0"></div>
-        <div class="field"><label>Altura (cm)</label><input type="number" id="obHeight" placeholder="175" class="ob-input" style="margin:0"></div>
-        <div class="field"><label>Sexo</label>
-          <select id="obSex" style="width:100%;background:#1e1e1e;border:1.5px solid #333;border-radius:12px;padding:13px 14px;color:#f2efe9;font-size:14px;outline:none;-webkit-appearance:none">
-            <option value="">—</option><option value="hombre">Hombre</option><option value="mujer">Mujer</option><option value="otro">Otro</option>
-          </select>
-        </div>
-      </div>
-      <div class="ob-nav"><button class="ob-back" onclick="goS(5)">←</button><button class="ob-next" onclick="goS(7)">Siguiente →</button></div>
+<!-- S6: DATOS FÍSICOS -->
+<div class="ob-step" id="obs6">
+  <div class="ob-tag">Paso 6 de 7</div>
+  <div class="ob-title">Tus datos<br><em>físicos</em></div>
+  <div class="ob-desc">Opcionales — útiles para personalizar mejor.</div>
+  <div class="ob-grid">
+    <div class="field"><label>Edad</label><input type="number" id="obAge" placeholder="25" class="ob-input" style="margin:0"></div>
+    <div class="field"><label>Peso (kg)</label><input type="number" id="obWeight" placeholder="70" class="ob-input" style="margin:0"></div>
+    <div class="field"><label>Altura (cm)</label><input type="number" id="obHeight" placeholder="175" class="ob-input" style="margin:0"></div>
+    <div class="field"><label>Sexo</label>
+      <select id="obSex" style="width:100%;background:#1e1e1e;border:1.5px solid #333;border-radius:12px;padding:13px 14px;color:#f2efe9;font-size:14px;outline:none;-webkit-appearance:none">
+        <option value="">—</option><option value="hombre">Hombre</option><option value="mujer">Mujer</option><option value="otro">Otro</option>
+      </select>
     </div>
+  </div>
+  <div class="ob-nav"><button class="ob-back" onclick="goS(5)">←</button><button class="ob-next" onclick="goS(7)">Siguiente →</button></div>
+</div>
 
-    <!-- S7: LESIONES -->
-    <div class="ob-step" id="obs7">
-      <div class="ob-tag">Paso 7 de 7</div>
-      <div class="ob-title">¿Tienes alguna<br><em>lesión?</em></div>
-      <div class="ob-desc">Para adaptar la rutina y evitar riesgos.</div>
-      <div class="chips" id="lesionChips">
-        <div class="chip" data-v="ninguna" onclick="selChip(this,'lesion')">Ninguna</div>
-        <div class="chip" data-v="espalda_baja" onclick="selChip(this,'lesion')">Espalda baja</div>
-        <div class="chip" data-v="rodilla" onclick="selChip(this,'lesion')">Rodilla</div>
-        <div class="chip" data-v="hombro" onclick="selChip(this,'lesion')">Hombro</div>
-        <div class="chip" data-v="cadera" onclick="selChip(this,'lesion')">Cadera</div>
-        <div class="chip" data-v="muneca" onclick="selChip(this,'lesion')">Muñeca</div>
-        <div class="chip" data-v="tobillo" onclick="selChip(this,'lesion')">Tobillo</div>
-      </div>
-      <div class="ob-nav"><button class="ob-back" onclick="goS(6)">←</button><button class="ob-next" id="s7next" disabled onclick="finishOb()">¡Generar mi rutina! 🔥</button></div>
-    </div>
+<!-- S7: LESIONES -->
+<div class="ob-step" id="obs7">
+  <div class="ob-tag">Paso 7 de 7</div>
+  <div class="ob-title">¿Tienes alguna<br><em>lesión?</em></div>
+  <div class="ob-desc">Para adaptar la rutina y evitar riesgos.</div>
+  <div class="chips" id="lesionChips">
+    <div class="chip" data-v="ninguna" onclick="selChip(this,'lesion')">Ninguna</div>
+    <div class="chip" data-v="espalda_baja" onclick="selChip(this,'lesion')">Espalda baja</div>
+    <div class="chip" data-v="rodilla" onclick="selChip(this,'lesion')">Rodilla</div>
+    <div class="chip" data-v="hombro" onclick="selChip(this,'lesion')">Hombro</div>
+    <div class="chip" data-v="cadera" onclick="selChip(this,'lesion')">Cadera</div>
+    <div class="chip" data-v="muneca" onclick="selChip(this,'lesion')">Muñeca</div>
+    <div class="chip" data-v="tobillo" onclick="selChip(this,'lesion')">Tobillo</div>
+  </div>
+  <div class="ob-nav"><button class="ob-back" onclick="goS(6)">←</button><button class="ob-next" id="s7next" disabled onclick="finishOb()">¡Generar mi rutina! 🔥</button></div>
+</div>
+```
 
   </div>
 </div>
 
 <!-- GENERATING -->
+
 <div class="screen" id="genScreen">
   <div class="gen-icon">⚡</div>
   <div class="gen-title">Creando tu rutina</div>
@@ -343,6 +351,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 </div>
 
 <!-- HOME -->
+
 <div class="screen" id="homeScreen">
   <div class="topbar">
     <div class="topbar-name">Hola, <span id="topName">—</span> 👋</div>
@@ -367,6 +376,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 </div>
 
 <!-- WORKOUT -->
+
 <div class="screen" id="workoutScreen">
   <div class="workout-hd">
     <div class="workout-hd-top">
@@ -379,6 +389,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 </div>
 
 <!-- PROFILE -->
+
 <div class="screen" id="profileScreen">
   <div style="display:flex;align-items:center;gap:12px;padding:18px 16px 0">
     <button class="back-btn" onclick="nav('homeScreen',null)">←</button>
@@ -407,6 +418,7 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 </div>
 
 <!-- NAV -->
+
 <nav class="bnav" id="bnav" style="display:none">
   <button class="bnav-item active" onclick="nav('homeScreen',this)"><span class="bnav-icon">🏠</span><span class="bnav-lbl">Inicio</span></button>
   <button class="bnav-item" onclick="nav('workoutScreen',this);openWorkout()"><span class="bnav-icon">💪</span><span class="bnav-lbl">Entrenar</span></button>
@@ -883,5 +895,6 @@ async function init() {
 
 init();
 </script>
+
 </body>
 </html>
