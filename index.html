@@ -443,9 +443,9 @@ async function sb(path, opts={}) {
       ...opts
     });
     const txt = await r.text();
-    if(!r.ok) { console.error('SB err',r.status,txt); return null; }
+    if(!r.ok) { console.error('SB err',r.status,txt); alert('SB Error '+r.status+': '+txt.substring(0,100)); return null; }
     try{return JSON.parse(txt);}catch{return null;}
-  }catch(e){console.error(e);return null;}
+  }catch(e){alert('Fetch error: '+e.message);return null;}
 }
 
 // ─── HASH (simple) ───
