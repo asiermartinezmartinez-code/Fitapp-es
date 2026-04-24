@@ -703,7 +703,7 @@ async function doLogin() {
   showAuthMsg('Entrando...','');
   const res = await sbAuth('token?grant_type=password', {email, password:pass});
   if(res?.access_token) {
-    currentUser = {access_token:res.access_token, user:res.user};
+    currentUser = {access_token:res.access_token, refresh_token:res.refresh_token, user:res.user};
     localStorage.setItem('fitapp_session', JSON.stringify(currentUser));
     await loadProfile();
     if(!profile?.onboarding_done) { showScreen('onboardScreen'); }
@@ -826,17 +826,35 @@ async function finishOnboarding() {
   obData.height = document.getElementById('obHeight').value||null;
   obData.sex = document.getElementById('obSex').value||null;
 
-  // Debug check
   if(!currentUser?.user?.id) {
-    alert('Error: sesión perdida. Vuelve a entrar.');
+    alert('Sesión perdida. Vuelve a entrar.');
     showScreen('authScreen');
     return;
   }
-  if(!obData.goal) { alert('Falta objetivo'); return; }
-  if(!obData.level) { alert('Falta nivel'); return; }
+  if(!obData.goal) { alert('Falta seleccionar objetivo'); return; }
+  if(!obData.level) { alert('Falta seleccionar nivel'); return; }
+  if(!obData.material.length) { alert('Falta seleccionar material'); return; }
+  if(!obData.lesiones.length) { alert('Falta seleccionar lesiones'); return; }
 
   showScreen('genScreen');
   await animateGen();
+
+  // Try to refresh token first
+  try {
+    const refreshRes = await fetch(`${SB}/auth/v1/token?grant_type=refresh_token`, {
+      method: 'POST',
+      headers: {'apikey': SK, 'Content-Type': 'application/json'},
+      body: JSON.stringify({refresh_token: currentUser.refresh_token})
+    });
+    if(refreshRes.ok) {
+      const refreshData = await refreshRes.json();
+      if(refreshData.access_token) {
+        currentUser.access_token = refreshData.access_token;
+        localStorage.setItem('fitapp_session', JSON.stringify(currentUser));
+      }
+    }
+  } catch(e) { console.log('Token refresh failed, using existing'); }
+
   await saveProfileAndRoutine();
   await loadHome();
 }
