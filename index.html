@@ -272,20 +272,55 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 <!-- S4: MATERIAL -->
 <div class="ob-step" id="obs4">
   <div class="ob-tag">Paso 4 de 7</div>
-  <div class="ob-title">¿Con qué<br><em>material</em> cuentas?</div>
-  <div class="ob-desc">Selecciona todo lo que tienes disponible.</div>
-  <div class="chips" id="materialChips">
-    <div class="chip" data-v="sin_material" onclick="selChip(this,'material')">Sin material</div>
-    <div class="chip" data-v="mancuernas" onclick="selChip(this,'material')">Mancuernas</div>
-    <div class="chip" data-v="kettlebell" onclick="selChip(this,'material')">Kettlebell</div>
-    <div class="chip" data-v="banco" onclick="selChip(this,'material')">Banco</div>
-    <div class="chip" data-v="gomas" onclick="selChip(this,'material')">Gomas</div>
-    <div class="chip" data-v="comba" onclick="selChip(this,'material')">Comba</div>
-    <div class="chip" data-v="pelota_medicinal" onclick="selChip(this,'material')">Pelota medicinal</div>
-    <div class="chip" data-v="rodillo_abdominal" onclick="selChip(this,'material')">Rodillo abdominal</div>
-    <div class="chip" data-v="barra" onclick="selChip(this,'material')">Barra + discos</div>
-    <div class="chip" data-v="gimnasio" onclick="selChip(this,'material')">🏋️ Gimnasio completo</div>
+  <div class="ob-title">¿Dónde<br><em>entrenas?</em></div>
+  <div class="ob-desc">Elige tu entorno de entrenamiento.</div>
+  <div class="opts" id="locationOpts">
+    <div class="opt" onclick="selLocation(this,'gimnasio')">
+      <span class="opt-icon">🏋️</span>
+      <div class="opt-title">Gimnasio</div>
+      <div class="opt-desc">Acceso a máquinas, poleas, barras y todo el equipamiento</div>
+    </div>
+    <div class="opt" onclick="selLocation(this,'casa')">
+      <span class="opt-icon">🏠</span>
+      <div class="opt-title">En casa</div>
+      <div class="opt-desc">Entreno desde casa con o sin material</div>
+    </div>
   </div>
+
+  <!-- SUB-OPTS CASA -->
+  <div id="casaOpts" style="display:none">
+    <div class="ob-desc" style="margin-bottom:12px">¿Tienes material en casa?</div>
+    <div class="opts">
+      <div class="opt" id="optSinMat" onclick="selCasaMat(this,'sin_material')">
+        <span class="opt-icon">🤸</span>
+        <div class="opt-title">Sin material</div>
+        <div class="opt-desc">Solo peso corporal — sentadillas, flexiones, fondos...</div>
+      </div>
+      <div class="opt" id="optConMat" onclick="selCasaMat(this,'con_material')">
+        <span class="opt-icon">🎽</span>
+        <div class="opt-title">Con material</div>
+        <div class="opt-desc">Tengo equipamiento en casa</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MATERIAL CHIPS -->
+  <div id="materialChipsWrap" style="display:none">
+    <div class="ob-desc" style="margin-bottom:12px">Selecciona el material que tienes:</div>
+    <div class="chips" id="materialChips">
+      <div class="chip" data-v="mancuernas" onclick="selChip(this,'material')">Mancuernas</div>
+      <div class="chip" data-v="kettlebell" onclick="selChip(this,'material')">Kettlebell</div>
+      <div class="chip" data-v="banco" onclick="selChip(this,'material')">Banco</div>
+      <div class="chip" data-v="gomas" onclick="selChip(this,'material')">Gomas de resistencia</div>
+      <div class="chip" data-v="comba" onclick="selChip(this,'material')">Comba</div>
+      <div class="chip" data-v="pelota_medicinal" onclick="selChip(this,'material')">Pelota medicinal</div>
+      <div class="chip" data-v="rodillo_abdominal" onclick="selChip(this,'material')">Rodillo abdominal</div>
+      <div class="chip" data-v="barra" onclick="selChip(this,'material')">Barra + discos</div>
+      <div class="chip" data-v="anillas" onclick="selChip(this,'material')">Anillas / TRX</div>
+      <div class="chip" data-v="cajón" onclick="selChip(this,'material')">Cajón pliométrico</div>
+    </div>
+  </div>
+
   <div class="ob-nav"><button class="ob-back" onclick="goS(3)">←</button><button class="ob-next" id="s4next" disabled onclick="goS(5)">Siguiente →</button></div>
 </div>
 
@@ -537,6 +572,37 @@ function selOpt(el,key,val) {
   if(btn) btn.disabled=false;
 }
 
+function selLocation(el, val) {
+  document.querySelectorAll('#locationOpts .opt').forEach(o=>o.classList.remove('sel'));
+  el.classList.add('sel');
+  obData.location = val;
+  if(val==='gimnasio') {
+    obData.material = ['gimnasio'];
+    document.getElementById('casaOpts').style.display='none';
+    document.getElementById('materialChipsWrap').style.display='none';
+    document.getElementById('s4next').disabled = false;
+  } else {
+    obData.material = [];
+    document.getElementById('casaOpts').style.display='block';
+    document.getElementById('materialChipsWrap').style.display='none';
+    document.getElementById('s4next').disabled = true;
+  }
+}
+
+function selCasaMat(el, val) {
+  document.querySelectorAll('#casaOpts .opt').forEach(o=>o.classList.remove('sel'));
+  el.classList.add('sel');
+  if(val==='sin_material') {
+    obData.material = ['sin_material'];
+    document.getElementById('materialChipsWrap').style.display='none';
+    document.getElementById('s4next').disabled = false;
+  } else {
+    obData.material = [];
+    document.getElementById('materialChipsWrap').style.display='block';
+    document.getElementById('s4next').disabled = true;
+  }
+}
+
 function selDayChip(chip) {
   chip.classList.toggle('sel');
   const allDays = ['lunes','martes','miercoles','jueves','viernes','sabado','domingo'];
@@ -551,15 +617,8 @@ function selChip(chip,key) {
   const val=chip.dataset.v;
   const container=chip.closest('.chips');
   if(key==='material') {
-    if(val==='sin_material') {
-      container.querySelectorAll('.chip').forEach(c=>c.classList.remove('sel'));
-      chip.classList.add('sel');
-      obData.material=['sin_material'];
-    } else {
-      container.querySelector('[data-v="sin_material"]')?.classList.remove('sel');
-      chip.classList.toggle('sel');
-      obData.material=[...container.querySelectorAll('.chip.sel')].map(c=>c.dataset.v);
-    }
+    chip.classList.toggle('sel');
+    obData.material=[...document.querySelectorAll('#materialChips .chip.sel')].map(c=>c.dataset.v);
     document.getElementById('s4next').disabled=obData.material.length===0;
   } else {
     if(val==='ninguna') {
@@ -621,79 +680,221 @@ function sleep(ms){return new Promise(r=>setTimeout(r,ms));}
 
 // ─── ROUTINE GENERATOR ───
 function generateRoutine(d) {
-  const {goal,level,material,days,lesiones} = d;
-  const hm = (x)=>material.includes(x)||material.includes('gimnasio');
+  const {goal, level, material, lesiones} = d;
+  const allDays = ['lunes','martes','miercoles','jueves','viernes','sabado','domingo'];
+  const trainDays = d.trainDays && d.trainDays.length > 0 ? d.trainDays : allDays.slice(0, d.days||3);
+
+  const isGym = material.includes('gimnasio');
+  const isBodyweight = material.includes('sin_material');
+  const hm = (x) => material.includes(x);
+
   const ser = level==='principiante'?3:level==='avanzado'?5:4;
-  const reps = goal==='fuerza'?6:goal==='perder_peso'||goal==='tonificar'?15:10;
-  const repsStr = `${ser}×${reps}`;
   const noRodilla = lesiones.includes('rodilla');
   const noEspalda = lesiones.includes('espalda_baja');
 
-  const press = hm('mancuernas')&&hm('banco')?'Press banca mancuernas':hm('mancuernas')?'Press suelo mancuernas':'Push-up';
-  const row = hm('mancuernas')?'Remo un brazo mancuerna':hm('gomas')?'Remo con goma':'Remo suelo';
-  const shoulder = hm('mancuernas')?'Press militar mancuernas':hm('gomas')?'Press hombros goma':'Pike push-up';
-  const squat = hm('kettlebell')?'Goblet Squat KB':hm('mancuernas')?'Squat mancuernas':'Sentadilla';
-  const hinge = noEspalda?'Hip Thrust':hm('kettlebell')?'Romanian Deadlift KB':hm('mancuernas')?'Romanian Deadlift mancuernas':'Good morning';
-  const hip = hm('kettlebell')&&hm('banco')?'Hip Thrust KB banco':hm('mancuernas')&&hm('banco')?'Hip Thrust mancuerna banco':'Hip Thrust';
-  const core = hm('rodillo_abdominal')?'Rodillo abdominal':'Dead bug';
-  const cardio = hm('comba')?'Comba':hm('pelota_medicinal')?'Pelota medicinal slam':'Mountain climbers';
-  const swing = hm('kettlebell')?'Swing KB':'Sentadilla con salto';
+  // Reps by goal
+  const repsFuerza = level==='principiante'?8:level==='avanzado'?4:6;
+  const repsHiper = level==='principiante'?12:level==='avanzado'?10:10;
+  const repsCardio = 15;
+  const reps = goal==='fuerza'?repsFuerza:goal==='perder_peso'||goal==='tonificar'?repsCardio:repsHiper;
+  const repsStr = `${ser}×${reps}`;
+  const desc = goal==='fuerza'?'2 MIN':'90 SEG';
 
-  const allDays=['lunes','martes','miercoles','jueves','viernes','sabado','domingo'];
-  const trainDays = d.trainDays && d.trainDays.length > 0 ? d.trainDays : allDays.slice(0,days);
-  const types=['sup','inf','full','sup','inf','full','sup'].slice(0,trainDays.length);
-  const routine={};
+  // ── EXERCISE BANKS BY ENVIRONMENT ──
 
-  trainDays.forEach((day,i)=>{
-    const type=types[i]||'full';
+  // CARDIO / WARMUP
+  const warm_cardio = isGym ? 'Cinta 5 min ritmo moderado' : hm('comba') ? 'Comba continua' : 'Saltos en el sitio';
+  const finisher_cardio = isGym ? 'Remo ergómetro 3×2 min' : hm('comba') ? 'Comba intervalos 20s/10s ×8' : hm('pelota_medicinal') ? 'Pelota medicinal slam 3×12' : 'Burpees 3×10';
+  const core1 = isGym ? 'Crunch en polea' : hm('rodillo_abdominal') ? 'Rodillo abdominal' : 'Dead bug';
+  const core2 = isGym ? 'Plancha en TRX' : 'Plancha isométrica';
+  const core3 = isGym ? 'Rotación con polea' : hm('pelota_medicinal') ? 'Rotación pelota medicinal' : 'Giro ruso';
+
+  // ── GYM BLOCKS ──
+  const gymSup = (s,r) => [
+    {n:'Press banca barra', d:`${s}×${r}`},
+    {n:'Remo en máquina polea baja', d:`${s}×${r}`},
+    {n:'Press militar en máquina Smith', d:`${s}×${r-2}`},
+    {n:'Jalón al pecho en polea', d:`${s}×${r}`},
+    {n:'Curl bíceps en banco Scott', d:`3×${r+2}`},
+    {n:'Press francés en polea', d:`3×${r+2}`},
+  ];
+  const gymSupHiper = (s,r) => [
+    {n:'Press banca mancuernas inclinado', d:`${s}×${r}`},
+    {n:'Remo en máquina Hammer Strength', d:`${s}×${r}`},
+    {n:'Elevaciones laterales en máquina', d:`${s}×${r+2}`},
+    {n:'Aperturas en polea cruzada', d:`${s}×${r+2}`},
+    {n:'Curl en máquina', d:`3×${r+2}`},
+    {n:'Extensión tríceps en polea', d:`3×${r+2}`},
+  ];
+  const gymSupCardio = (s,r) => [
+    {n:'Press banca mancuernas', d:`${s}×${r}`},
+    {n:'Remo con mancuerna un brazo', d:`${s}×${r}/lado`},
+    {n:'Press hombros mancuernas', d:`${s}×${r}`},
+    {n:'Face pull en polea', d:`${s}×${r+2}`},
+    {n:'Curl + extensión simultáneo mancuernas', d:`3×${r}`},
+  ];
+  const gymInf = (s,r) => [
+    {n:'Sentadilla con barra', d:`${s}×${r}`},
+    {n:'Leg press 45°', d:`${s}×${r+2}`},
+    {n:noEspalda?'Hip Thrust en banco':'Peso muerto convencional barra', d:`${s}×${r}`},
+    {n:'Curl femoral en máquina tumbado', d:`${s}×${r+2}`},
+    {n:'Extensión cuádriceps en máquina', d:`${s}×${r+2}`},
+    {n:noRodilla?'Abductor en máquina':'Prensa una pierna', d:`${s}×${r}/lado`},
+  ];
+  const gymInfHiper = (s,r) => [
+    {n:'Sentadilla hack en máquina', d:`${s}×${r}`},
+    {n:'Hip Thrust en banco con barra', d:`${s}×${r}`},
+    {n:'Zancada en Smith', d:`${s}×${r}/lado`},
+    {n:'Curl femoral en máquina sentado', d:`${s}×${r+2}`},
+    {n:'Abductor en máquina', d:`${s}×${r+2}`},
+    {n:'Adductor en máquina', d:`${s}×${r+2}`},
+  ];
+  const gymFull = (s,r) => [
+    {n:'Sentadilla con barra', d:`${s}×${r}`},
+    {n:'Press banca barra', d:`${s}×${r}`},
+    {n:'Jalón al pecho en polea', d:`${s}×${r}`},
+    {n:'Hip Thrust en banco con barra', d:`${s}×${r}`},
+    {n:'Press hombros en máquina Smith', d:`3×${r}`},
+  ];
+
+  // ── HOME + MATERIAL BLOCKS ──
+  const matSup = (s,r) => {
+    const press = hm('banco')&&hm('mancuernas')?'Press banca mancuernas':hm('mancuernas')?'Press suelo mancuernas':hm('barra')?'Press banca barra':'Push-up';
+    const row = hm('mancuernas')?'Remo un brazo mancuerna':hm('gomas')?'Remo con goma':'Remo inverso en suelo';
+    const shoulder = hm('mancuernas')?'Press militar mancuernas':hm('gomas')?'Press hombros goma':'Pike push-up';
+    const curl = hm('mancuernas')?'Curl martillo mancuernas':hm('gomas')?'Curl bíceps con goma':'Curl con mochila lastrada';
+    const tri = hm('banco')&&hm('mancuernas')?'Press francés banco mancuernas':hm('gomas')?'Extensión tríceps goma':'Fondos en silla';
+    return [{n:press,d:`${s}×${r}`},{n:row,d:`${s}×${r}/lado`},{n:shoulder,d:`${s}×${r}`},{n:curl,d:`3×${r+2}`},{n:tri,d:`3×${r+2}`}];
+  };
+  const matInf = (s,r) => {
+    const squat = hm('kettlebell')?'Goblet Squat KB':hm('mancuernas')?'Squat mancuernas':hm('barra')?'Sentadilla barra':'Sentadilla bulgara lastrada';
+    const hinge = noEspalda?'Hip Thrust':hm('kettlebell')?'Romanian Deadlift KB':hm('mancuernas')?'Romanian Deadlift mancuernas':hm('barra')?'Peso muerto barra':'Good morning';
+    const hip = hm('banco')?'Hip Thrust banco':'Hip Thrust suelo';
+    const lunge = hm('mancuernas')?'Zancada caminando mancuernas':hm('kettlebell')?'Zancada KB':'Zancada sin peso';
+    const swing = hm('kettlebell')?'Swing KB':'Sentadilla con salto';
+    const rows = [{n:squat,d:`${s}×${r}`},{n:hinge,d:`${s}×${r}`}];
+    if(!noRodilla) rows.push({n:lunge,d:`${s}×${r}/lado`});
+    rows.push({n:hip,d:`${s}×${r+2}`},{n:swing,d:`3×12`});
+    if(hm('gomas')) rows.push({n:'Abductor goma lateral walk',d:'3×12/lado'});
+    return rows;
+  };
+  const matFull = (s,r) => {
+    const squat = hm('kettlebell')?'Goblet Squat KB':hm('mancuernas')?'Squat mancuernas':'Sentadilla';
+    const press = hm('mancuernas')&&hm('banco')?'Press banca mancuernas':hm('mancuernas')?'Press suelo mancuernas':'Push-up';
+    const row = hm('mancuernas')?'Remo un brazo mancuerna':hm('gomas')?'Remo con goma':'Remo inverso';
+    const hip = hm('banco')?'Hip Thrust banco':'Hip Thrust';
+    return [{n:squat,d:`${s}×${r}`},{n:press,d:`${s}×${r}`},{n:row,d:`${s}×${r}/lado`},{n:hip,d:`${s}×${r}`}];
+  };
+
+  // ── BODYWEIGHT BLOCKS ──
+  const bwSup = (s,r) => [
+    {n:'Push-up',d:`${s}×${r}`},
+    {n:'Remo inverso (mesa o barra baja)',d:`${s}×${r}`},
+    {n:'Pike push-up',d:`${s}×${r}`},
+    {n:'Fondos en silla',d:`${s}×${r}`},
+    {n:'Curl con toalla',d:`3×12`},
+    {n:'Extensión tríceps en suelo',d:`3×12`},
+  ];
+  const bwInf = (s,r) => [
+    {n:'Sentadilla',d:`${s}×${r}`},
+    {n:noEspalda?'Hip Thrust sin peso':'Good morning sin peso',d:`${s}×${r}`},
+    {n:noRodilla?'Puente glúteo':'Sentadilla búlgara sin peso',d:`${s}×${r}/lado`},
+    {n:'Hip Thrust sin peso',d:`${s}×${r}`},
+    {n:'Sentadilla sumo con salto',d:'3×12'},
+  ];
+  const bwFull = (s,r) => [
+    {n:'Sentadilla',d:`${s}×${r}`},
+    {n:'Push-up',d:`${s}×${r}`},
+    {n:'Zancada alternando',d:`${s}×${r}/lado`},
+    {n:'Hip Thrust sin peso',d:`${s}×${r}`},
+    {n:'Fondos en silla',d:'3×12'},
+  ];
+
+  // ── SELECT EXERCISE SETS BY GOAL + ENV ──
+  function getSupExs() {
+    if(isGym) return goal==='fuerza'?gymSup(ser,reps):goal==='tonificar'||goal==='perder_peso'?gymSupCardio(ser,reps):gymSupHiper(ser,reps);
+    if(!isBodyweight) return matSup(ser,reps);
+    return bwSup(ser,reps);
+  }
+  function getInfExs() {
+    if(isGym) return goal==='fuerza'?gymInf(ser,reps):gymInfHiper(ser,reps);
+    if(!isBodyweight) return matInf(ser,reps);
+    return bwInf(ser,reps);
+  }
+  function getFullExs() {
+    if(isGym) return gymFull(ser,reps);
+    if(!isBodyweight) return matFull(ser,reps);
+    return bwFull(ser,reps);
+  }
+
+  // ── FINISHER BY GOAL ──
+  function getFinisher(type) {
+    if(goal==='fuerza') return {titulo:'Core fuerza',tipo:'amrap',badge:'8 MIN',exs:[
+      {n:core1,d:`3×${reps}`},{n:core2,d:'3×30 seg'},{n:core3,d:'3×12'},
+    ]};
+    if(goal==='perder_peso') return {titulo:'HIIT Finisher',tipo:'amrap',badge:'12 MIN',exs:[
+      {n:finisher_cardio,d:'ronda'},{n:'Sentadilla con salto',d:'15 reps'},{n:core1,d:'3×15'},{n:'Mountain climbers',d:'20 reps'},
+    ]};
+    if(goal==='tonificar') return {titulo:'Circuito metabólico',tipo:'amrap',badge:'10 MIN',exs:[
+      {n:finisher_cardio,d:'ronda'},{n:core1,d:`3×${reps}`},{n:core2,d:'3×30 seg'},
+    ]};
+    if(goal==='resistencia') return {titulo:'Cardio resistencia',tipo:'amrap',badge:'15 MIN',exs:[
+      {n:warm_cardio.replace('5 min','10 min').replace('3 min','10 min'),d:'10 min'},{n:core1,d:'3×15'},{n:core3,d:'3×15'},
+    ]};
+    return {titulo:'Core + Cardio',tipo:'amrap',badge:'10 MIN',exs:[
+      {n:finisher_cardio,d:'ronda'},{n:core1,d:`3×${reps}`},{n:core2,d:'3×30 seg'},
+    ]};
+  }
+
+  // ── ASSIGN DAY TYPES BASED ON COUNT ──
+  function getDayTypes(n) {
+    if(n===1) return ['full'];
+    if(n===2) return ['sup','inf'];
+    if(n===3) return ['sup','inf','full'];
+    if(n===4) return ['sup','inf','sup','inf'];
+    if(n===5) return ['sup','inf','full','sup','inf'];
+    if(n===6) return ['sup','inf','full','sup','inf','full'];
+    return ['sup','inf','full','sup','inf','full','sup'];
+  }
+
+  const types = getDayTypes(trainDays.length);
+  const routine = {};
+
+  trainDays.forEach((day, i) => {
+    const type = types[i] || 'full';
+    const supExs = getSupExs();
+    const infExs = getInfExs();
+    const fullExs = getFullExs();
+    const finisher = getFinisher(type);
+
     if(type==='sup') {
-      routine[day]={titulo:'Tren Superior',icono:'💪',bloques:[
+      routine[day] = {titulo:'Tren Superior', icono:'💪', bloques:[
         {titulo:'Calentamiento',tipo:'cal',badge:'8 MIN',exs:[
-          {n:hm('comba')?'Comba continua':'Saltos en el sitio',d:'3 min'},
-          {n:'Rotaciones de hombro',d:'2×15'},
-          {n:'Push-up lento',d:'2×8'},
+          {n:warm_cardio,d:'3-5 min'},{n:'Rotaciones hombro',d:'2×15'},{n:'Push-up lento',d:'2×8'},
         ]},
-        {titulo:'Bloque A · Fuerza',tipo:'fuerza',badge:`${ser} SERIES`,exs:[
-          {n:press,d:repsStr},{n:row,d:repsStr+'/lado'},{n:shoulder,d:`${ser}×${reps+2}`},
-          {n:'Curl bíceps',d:`3×${reps+2}`},{n:'Extensión tríceps',d:`3×${reps+2}`},
-        ]},
-        {titulo:'Finisher',tipo:'amrap',badge:'10 MIN',exs:[
-          {n:cardio,d:'3×30 seg'},{n:core,d:`3×${reps}`},
-        ]},
+        {titulo:`Bloque A · ${goal==='fuerza'?'Fuerza':'Volumen'}`,tipo:'fuerza',badge:desc,exs:supExs},
+        finisher,
       ]};
     } else if(type==='inf') {
-      routine[day]={titulo:'Tren Inferior',icono:'🦵',bloques:[
+      routine[day] = {titulo:'Tren Inferior', icono:'🦵', bloques:[
         {titulo:'Calentamiento',tipo:'cal',badge:'8 MIN',exs:[
-          {n:hm('comba')?'Comba continua':'Saltos en el sitio',d:'3 min'},
-          {n:'Movilidad cadera',d:'2×10'},{n:squat+' ligero',d:'2×15'},
+          {n:warm_cardio,d:'3-5 min'},{n:'Movilidad cadera',d:'2×10'},{n:'Sentadilla sin peso',d:'2×15'},
         ]},
-        {titulo:'Bloque A · Fuerza',tipo:'fuerza',badge:`${ser} SERIES`,exs:[
-          {n:squat,d:repsStr},{n:hinge,d:repsStr},
-          ...(!noRodilla?[{n:'Bulgarian Split Squat',d:`${ser}×${reps}/lado`}]:[]),
-          {n:hip,d:`${ser}×${reps+2}`},
-        ]},
-        {titulo:'Finisher',tipo:'amrap',badge:'10 MIN',exs:[
-          {n:swing,d:`3×${reps}`},{n:core,d:`3×${reps}`},
-          ...(hm('gomas')?[{n:'Abductor goma lateral walk',d:'3×10/lado'}]:[]),
-        ]},
+        {titulo:`Bloque A · ${goal==='fuerza'?'Fuerza':'Volumen'}`,tipo:'fuerza',badge:desc,exs:infExs},
+        finisher,
       ]};
     } else {
-      routine[day]={titulo:'Cuerpo completo',icono:'⚡',bloques:[
+      routine[day] = {titulo:'Cuerpo completo', icono:'⚡', bloques:[
         {titulo:'Calentamiento',tipo:'cal',badge:'8 MIN',exs:[
-          {n:hm('comba')?'Comba continua':'Saltos en el sitio',d:'3 min'},{n:'Movilidad dinámica',d:'5 min'},
+          {n:warm_cardio,d:'3-5 min'},{n:'Movilidad dinámica',d:'5 min'},
         ]},
-        {titulo:'Bloque A · Fuerza',tipo:'fuerza',badge:'3 SERIES',exs:[
-          {n:squat,d:'3×10'},{n:press,d:'3×10'},{n:row,d:'3×10/lado'},{n:hip,d:'3×12'},
-        ]},
-        {titulo:'Circuito AMRAP',tipo:'amrap',badge:'12 MIN',exs:[
-          {n:swing,d:'10 reps'},{n:'Push-up',d:'8 reps'},{n:'Sentadilla con salto',d:'10 reps'},{n:core,d:'8 reps'},
-          ...(hm('comba')?[{n:'Comba',d:'30 seg'}]:[{n:'Mountain climbers',d:'20 reps'}]),
-        ]},
+        {titulo:'Bloque A · Fuerza',tipo:'fuerza',badge:desc,exs:fullExs},
+        finisher,
       ]};
     }
   });
 
-  allDays.forEach(d=>{ if(!routine[d]) routine[d]={titulo:'Descanso',icono:'😴',bloques:[]}; });
+  allDays.forEach(day => { if(!routine[day]) routine[day]={titulo:'Descanso',icono:'😴',bloques:[]}; });
   return routine;
 }
 
