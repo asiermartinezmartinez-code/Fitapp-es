@@ -292,14 +292,18 @@ input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;heigh
 <!-- S5: DÍAS -->
 <div class="ob-step" id="obs5">
   <div class="ob-tag">Paso 5 de 7</div>
-  <div class="ob-title">¿Cuántos días<br><em>a la semana?</em></div>
-  <div class="ob-desc">Días que puedes dedicar al entrenamiento.</div>
-  <div class="sl-wrap">
-    <div><span class="sl-val" id="daysVal">3</span> <span class="sl-unit">días / semana</span></div>
-    <input type="range" min="2" max="6" value="3" id="daysSlider" oninput="document.getElementById('daysVal').textContent=this.value;obData.days=parseInt(this.value)">
-    <div class="sl-labels"><span>2 días</span><span>6 días</span></div>
+  <div class="ob-title">¿Qué días<br><em>entrenas?</em></div>
+  <div class="ob-desc">Selecciona los días exactos que quieres entrenar cada semana.</div>
+  <div class="chips" id="daysChips">
+    <div class="chip" data-v="lunes" onclick="selDayChip(this)">Lunes</div>
+    <div class="chip" data-v="martes" onclick="selDayChip(this)">Martes</div>
+    <div class="chip" data-v="miercoles" onclick="selDayChip(this)">Miércoles</div>
+    <div class="chip" data-v="jueves" onclick="selDayChip(this)">Jueves</div>
+    <div class="chip" data-v="viernes" onclick="selDayChip(this)">Viernes</div>
+    <div class="chip" data-v="sabado" onclick="selDayChip(this)">Sábado</div>
+    <div class="chip" data-v="domingo" onclick="selDayChip(this)">Domingo</div>
   </div>
-  <div class="ob-nav"><button class="ob-back" onclick="goS(4)">←</button><button class="ob-next" onclick="goS(6)">Siguiente →</button></div>
+  <div class="ob-nav"><button class="ob-back" onclick="goS(4)">←</button><button class="ob-next" id="s5next" disabled onclick="goS(6)">Siguiente →</button></div>
 </div>
 
 <!-- S6: DATOS FÍSICOS -->
@@ -433,7 +437,7 @@ const SK = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI
 let profile = null;
 let todayRoutine = null;
 let obStep = 1;
-let obData = {name:'',goal:null,level:null,material:[],days:3,lesiones:[],age:null,weight:null,height:null,sex:null};
+let obData = {name:'',goal:null,level:null,material:[],days:3,trainDays:[],lesiones:[],age:null,weight:null,height:null,sex:null};
 
 // ─── SUPABASE ───
 async function sb(path, opts={}) {
@@ -533,6 +537,16 @@ function selOpt(el,key,val) {
   if(btn) btn.disabled=false;
 }
 
+function selDayChip(chip) {
+  chip.classList.toggle('sel');
+  const allDays = ['lunes','martes','miercoles','jueves','viernes','sabado','domingo'];
+  obData.trainDays = [...document.querySelectorAll('#daysChips .chip.sel')].map(c=>c.dataset.v);
+  // Sort by week order
+  obData.trainDays.sort((a,b)=>allDays.indexOf(a)-allDays.indexOf(b));
+  obData.days = obData.trainDays.length;
+  document.getElementById('s5next').disabled = obData.trainDays.length === 0;
+}
+
 function selChip(chip,key) {
   const val=chip.dataset.v;
   const container=chip.closest('.chips');
@@ -568,13 +582,14 @@ async function finishOb() {
   obData.sex=document.getElementById('obSex').value||null;
   showScreen('genScreen');
   await animateGen();
-  const routine=generateRoutine(obData);
+  const routine=generateRoutine({...obData, trainDays: obData.trainDays});
   const updateData={
     name:obData.name,
     goal:obData.goal,
     level:obData.level,
     material:JSON.stringify(obData.material),
     days_per_week:obData.days,
+    train_days:JSON.stringify(obData.trainDays),
     lesiones:JSON.stringify(obData.lesiones),
     age:obData.age?parseInt(obData.age):null,
     weight_kg:obData.weight?parseFloat(obData.weight):null,
@@ -625,8 +640,8 @@ function generateRoutine(d) {
   const swing = hm('kettlebell')?'Swing KB':'Sentadilla con salto';
 
   const allDays=['lunes','martes','miercoles','jueves','viernes','sabado','domingo'];
-  const trainDays=allDays.slice(0,days);
-  const types=['sup','inf','full','sup','inf','full'].slice(0,days);
+  const trainDays = d.trainDays && d.trainDays.length > 0 ? d.trainDays : allDays.slice(0,days);
+  const types=['sup','inf','full','sup','inf','full','sup'].slice(0,trainDays.length);
   const routine={};
 
   trainDays.forEach((day,i)=>{
@@ -688,7 +703,13 @@ function loadHome() {
   document.getElementById('bnav').style.display='flex';
   if(!profile) return;
 
-  const routine=profile.routine?JSON.parse(profile.routine):{};
+  const routine=profile.routine?JSON.parse(profile.routine):generateRoutine({
+    goal:profile.goal,level:profile.level,
+    material:JSON.parse(profile.material||'[]'),
+    days:profile.days_per_week||3,
+    trainDays:JSON.parse(profile.train_days||'[]'),
+    lesiones:JSON.parse(profile.lesiones||'[]')
+  });
   todayRoutine=routine;
 
   document.getElementById('topName').textContent=(profile.name||'—').split(' ')[0];
